@@ -27,10 +27,10 @@ checkBirthday ($password, $birthday);
 sub checkBirthday {
   my @nascimento = $_[1];
   print "nascimento local :";
-  print $nascimento [0]
+  print $nascimento [0];
   my @senha = $_[0];
   print "senha local :@senha\n";
-  if ($senha[0] =~ /\Q$nascimento[0]\E/){
+  if (index($senha [0], $nascimento [0]) != -1){
     print "Senha utliza a data de nascimento\n";
   }
 } 
