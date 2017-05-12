@@ -1,0 +1,184 @@
+\documentclass[
+% -- opções da classe memoir --
+article,			% indica que é um artigo acadêmico
+11pt,				% tamanho da fonte
+oneside,			% para impressão apenas no recto. Oposto a twoside
+a4paper,			% tamanho do papel. 
+% -- opções da classe abntex2 --
+%chapter=TITLE,		% títulos de capítulos convertidos em letras maiúsculas
+%section=TITLE,		% títulos de seções convertidos em letras maiúsculas
+%subsection=TITLE,	% títulos de subseções convertidos em letras maiúsculas
+%subsubsection=TITLE % títulos de subsubseções convertidos em letras maiúsculas
+% -- opções do pacote babel --
+english,			% idioma adicional para hifenização
+brazil,				% o último idioma é o principal do documento
+sumario=tradicional
+]{abntex2}
+
+\usepackage[brazilian,hyperpageref]{backref}
+\usepackage[alf]{abntex2cite}
+\usepackage{nomencl}
+\usepackage[utf8]{inputenc}	
+\usepackage{indentfirst}
+% Pacote para a definição de novas cores
+\usepackage{xcolor}
+% Definindo novas cores
+\definecolor{verde}{rgb}{0.25,0.5,0.35}
+\definecolor{jpurple}{rgb}{0.5,0,0.35}
+\definecolor{darkgreen}{rgb}{0.0, 0.2, 0.13}
+%\definecolor{oldmauve}{rgb}{0.4, 0.19, 0.28}
+% Configurando layout para mostrar codigos Java
+\usepackage{listings}
+
+\newcommand{\estiloJava}{
+	\lstset{
+		language=Perl,
+		basicstyle=\ttfamily\small,
+		keywordstyle=\color{jpurple}\bfseries,
+		stringstyle=\color{red},
+		commentstyle=\color{verde},
+		morecomment=[s][\color{blue}]{/**}{*/},
+		extendedchars=true,
+		showspaces=false,
+		showstringspaces=false,
+		numbers=left,
+		numberstyle=\tiny,
+		breaklines=true,
+		backgroundcolor=\color{cyan!10},
+		breakautoindent=true,
+		captionpos=b,
+		xleftmargin=0pt,
+		tabsize=2
+}}
+
+%opening
+\title{\textbf{Gerenciador de Senhas}}
+\author{Brenno Rodrigues de Carvalho da Silva\\ Natã dos Santos Carvalho}
+
+
+\begin{document}
+\selectlanguage{brazil}
+\frenchspacing 
+\maketitle
+
+\section{Introdução}
+Nesta etapa do trabalho consiste na implementação das funções de leitura de arquivo, tratamento e classificação das senhas, em \verb!Perl! utilizando módulos e subrotinas.
+
+\section{Implementação}
+As funções de tratamento e classificação das senhas são executadas recebendo parâmetros como nome, data de nascimento e senha do usuário. Para a classificação das senhas foram adotados os seguintes critérios:
+
+\begin{itemize}
+	\item Utilização de caracteres numéricos - A senha recebe um 1 ponto pela utilização deste critério, caso contrário não recebe nada;
+	\item Utilização de caracteres alfabéticos minúsculos - A senha recebe um 1 ponto pela utilização deste critério, caso contrário não recebe nada;
+	\item Utilização de caracteres alfabéticos maiúsculos - A senha recebe um 1 ponto pela utilização deste critério, caso contrário não recebe nada;
+	\item Utilização de caracteres especiais - A senha recebe um 2 ponto pela utilização deste critério, caso contrário não recebe nada;
+\end{itemize}
+
+Se o somatório dos pontos recebidos nestes 4 critérios for um total de 5 pontos, a senha é classificada como forte. Para um total de 2 ou menos pontos a senha é classificada como fraca e é recomendado a utilização dos critérios acima. 
+
+Quando o total de pontos for igual a 3 ou 4 pontos, o programa entra em uma subrotina que verifica a ocorrência do nome o da data de nascimento na composição da senha, se houver pelo menos uma ocorrência destas, a senha é classificada como fraca e é recomendado retirar o nome e/ou a data de nascimento da mesma. 
+
+Caso ambas as verificações citadas anteriormente sejam falsas, a senha é classificada como média e deixamos a critério do usuário melhora-la ou não.
+Foram implementadas as seguintes sub rotinas:
+
+\subsection{NumericCharacters}
+Esta subrotina que detecta a incidência de um ou mais caracteres numéricos.
+Caso haja este tipo de caracteres, a variável \emph{\$classificacao} recebe 1 pontos. Caso contrário, não recebe nenhuma pontuação.
+\begin{scriptsize}
+	\estiloJava
+	\begin{lstlisting}
+	sub NumericCharacters{
+	  my $classificacao;
+	  my @senha = @_;
+	  if($senha [0] =~ /\d/){
+	    #print "Tem numeros\n";
+	    $classificacao = 1;
+	    return $classificacao;
+	}
+	\end{lstlisting}
+\end{scriptsize}
+
+\subsection{LowerCaseCharacters}
+Esta subrotina detecta a incidência de um ou mais caracteres alfabéticos minúsculos. Caso haja este tipo de caracteres, a variável \emph{\$classificacao} recebe 1 ponto. Caso contrário, não recebe nenhuma pontuação.
+
+	\estiloJava
+	\begin{lstlisting}
+	sub LowerCaseCharacters{
+	  my $classificacao;
+	  my @senha = @_;
+	  if($senha [0]  =~ /[a-z]/){
+	    # print "Tem letras minusculas\n";
+	    return $classificacao = 1;
+	  }
+	}
+	\end{lstlisting}
+
+\subsection{UpperCaseCharacters}
+Esta subrotina detecta a incidência de um ou mais caracteres alfabéticos maiúsculos. Caso haja este tipo de caracteres, a variável \emph{\$classificacao} recebe 1 ponto. Caso contrário, não recebe nenhuma pontuação.
+
+	\estiloJava
+	\begin{lstlisting}
+	sub upperCaseCharacters{
+	  my $classificacao;
+	  my @senha = @_; 
+	  if($senha [0]  =~ /[A-Z]/){
+	    #	print "Tem letras Maisculas\n";
+	    return $classificacao = 1;
+	  }
+	}
+	\end{lstlisting}
+	
+\subsection{SpecialCharacters}
+Esta subrotina detecta a incidência de um ou mais caracteres especiais. Caso haja este tipo de caracteres, a variável \emph{\$classificacao} recebe 2 pontos. Caso contrário, não recebe nenhuma pontuação.
+	\estiloJava
+	\begin{lstlisting}
+	sub specialCharacters{
+	  my $classificacao;
+	  my @senha = @_;
+	  if($senha [0]  =~ /[!@#\$\%~^|&*_+]/){
+	    #	print "Tem special\n";
+	    return $classificacao = 2;   
+	  }
+	}
+	\end{lstlisting}
+
+\subsection{CheckBirthday}
+Esta subrotina é executada somente se o somatório dos pontos concedidos nas subrotinas anteriores seja igual a 3 ou 4 pontos. Ela detecta a utilização da data de nascimento do usuário na composição da senha. Caso a senha possua a informação citada acima, e retornado para a rotina principal o valor 1 que indicará que a senha devera receber a classificação de senha fraca.
+
+	\estiloJava
+	\begin{lstlisting}
+	sub checkBirthday {
+	  my @nascimento = $_[1];
+	  #print $nascimento [0];
+	  my @senha = $_[0];
+	  if (index($senha [0], $nascimento [0]) != -1){
+ 	    #print "Senha utliza a data de nascimento\n";
+	    return 1;
+	  }
+	} 
+	\end{lstlisting}
+
+\subsection{CheckName}
+Esta subrotina também é executada somente se o somatório dos pontos concedidos nas subrotinas anteriores seja igual a 3 ou 4 pontos. Ela detecta a utilização do nome do usuário na composição da senha. Caso a senha possua esta informação, é retornado para a rotina principal o valor 1 que indicará que a senha deverá receber a classificação de senha fraca.
+	
+	\estiloJava
+	\begin{lstlisting}
+	sub checkName{
+	  my @nome = $_[1];
+	  my @senha = $_[0];
+	  my $bool =0;
+	  if (index($senha [0], $nome [0]) != -1){
+	    #print "Senha utliza o nome\n";
+	    return $bool=1;
+	  }
+	}
+	\end{lstlisting}	
+
+\section{Casos de Uso}
+Estas subrotinas agrupadas em um módulo serão utilizadas pelo programa principal implementado em \verb!C++!. No momento estamos usando um programa de testes para verificar a correta execução das mesmas.
+ 
+ 
+\section{Conclusão}
+Algumas subrotinas deverão ser revisadas posteriormente pois em alguns dos nossos testes elas não se comportaram da maneira que gostaríamos. Estaremos providenciando todas as melhorias necessárias para cumprir com o que foi proposto na primeira etapa do trabalho.
+
+\end{document}

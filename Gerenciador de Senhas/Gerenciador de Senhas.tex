@@ -1,0 +1,60 @@
+\documentclass[
+% -- opções da classe memoir --
+article,			% indica que é um artigo acadêmico
+11pt,				% tamanho da fonte
+oneside,			% para impressão apenas no recto. Oposto a twoside
+a4paper,			% tamanho do papel. 
+% -- opções da classe abntex2 --
+%chapter=TITLE,		% títulos de capítulos convertidos em letras maiúsculas
+%section=TITLE,		% títulos de seções convertidos em letras maiúsculas
+%subsection=TITLE,	% títulos de subseções convertidos em letras maiúsculas
+%subsubsection=TITLE % títulos de subsubseções convertidos em letras maiúsculas
+% -- opções do pacote babel --
+english,			% idioma adicional para hifenização
+brazil,				% o último idioma é o principal do documento
+sumario=tradicional
+]{abntex2}
+
+\usepackage[brazilian,hyperpageref]{backref}
+\usepackage[alf]{abntex2cite}
+\usepackage{nomencl}
+\usepackage[utf8]{inputenc}	
+\usepackage{indentfirst}
+
+%opening
+\title{\textbf{Gerenciador de Senhas}}
+\author{Brenno Rodrigues de Carvalho da Silva\\ Natã dos Santos Carvalho}
+
+
+\begin{document}
+\selectlanguage{brazil}
+\frenchspacing 
+\maketitle
+
+\section{Introdução}
+Desenvolvido em C++ e Perl, o trabalho visa gerenciar senhas e 
+verificar a qualidade da mesma, diferenciando-as entre fracas, médias 
+ou fortes.
+
+\section{Implementação}
+O programa a ser desenvolvido contará com orientação a objetos. Um programa gerenciador escrito em C++ que chamará funções em Perl que fará o gerenciamento e a validação das senhas.
+
+Dentre as definições do escopo do programa haverão cinco funções de 
+interação com usuários e outras cinco de processamento de arquivo texto. 
+Tal processamento se dará de forma que o programa gerenciador
+em C++ permitirá ao usuário cadastrar seus e-mails e respectivas senhas. 
+Ao cadastrar essas informações serão inseridas também
+nome completo e data de nascimento do usuário a fim de que seja utilizado na análise das senhas.
+ 
+O programa de interface com o usuário criará então dois arquivos textos. 
+O primeiro servirá como dicionário de consultas para verificação e o segundo com as senhas que serão analisadas Só então o programa de processamento de arquivo retornará a classificação das senhas. A analise se dará de forma a verificar se as senhas possuem caracteres especiais, maiúsculos, minúsculos e dígitos  numéricos. Será verificado também se a senha se trata de um anagrama do nome do usuário trocando letras por caracteres especiais ou se contem sua data de nascimento. 
+
+O programa gerenciador por sua vez permitirá adicionar um e-mail, senha nova, trocar senha, gerar senha aleatória e por último excluir e-mail. O mesmo será implementado em linux. 
+
+\section{Casos de Uso}
+O programa tratará com leitura do teclado, adquirindo por fim 
+dados informados no tópico acima. 
+
+\section{Conclusão}
+O programa entrará em desenvolvimento após a entrega desse relatório e com prazo de entrega do processamento de arquivos textos para 12/05/2017. Após a conclusão desta etapa, será dado início ao desenvolvimento do programa gerenciador em C++.
+\end{document}
