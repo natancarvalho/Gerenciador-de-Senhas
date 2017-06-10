@@ -1,4 +1,4 @@
-trabalho lig prog
+/*trabalho lig prog
 
 - cadastrar usuários com nome completo, data de nascimento, login e senha;
 - criar um arquivo para cada usuário que irá armazenar os emails e suas respectivas senhas a serem administradas;
@@ -6,7 +6,7 @@ trabalho lig prog
 - o programa irá buscar o nome do usuário, caso não encontre será exibido a mensagem "usuário não cadastrado". caso encontre,
   irá buscar o arquivo contendo os emails/senhas cadastrados corresponde ao hash da senha de login;
 - após o login, o usuário poderá iserir, excluir e alterar email/senha, buscar uma senha referente a um email e avaliar as senhas;
-
+*/
 
 //usuário.h
 class Usuario{
