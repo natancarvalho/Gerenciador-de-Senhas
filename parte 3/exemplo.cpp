@@ -1,14 +1,14 @@
 trabalho lig prog
 
-- cadastrar usu·rios com nome completo, data de nascimento, login e senha;
-- criar um arquivo para cada usu·rio que ir· armazenar os emails e suas respectivas senhas a serem administradas;
-- o arquivo de emails e senhas ser· entitulado com um hash em sha* da senha cadastrada para login do usu·rio;
-- o programa ir· buscar o nome do usu·rio, caso n„o encontre ser· exibido a mensagem "usu·rio n„o cadastrado". caso encontre,
-  ir· buscar o arquivo contendo os emails/senhas cadastrados corresponde ao hash da senha de login;
-- apÛs o login, o usu·rio poder· iserir, excluir e alterar email/senha, buscar uma senha referente a um email e avaliar as senhas;
+- cadastrar usu√°rios com nome completo, data de nascimento, login e senha;
+- criar um arquivo para cada usu√°rio que ir√° armazenar os emails e suas respectivas senhas a serem administradas;
+- o arquivo de emails e senhas ser√° entitulado com um hash em sha* da senha cadastrada para login do usu√°rio;
+- o programa ir√° buscar o nome do usu√°rio, caso n√£o encontre ser√° exibido a mensagem "usu√°rio n√£o cadastrado". caso encontre,
+  ir√° buscar o arquivo contendo os emails/senhas cadastrados corresponde ao hash da senha de login;
+- ap√≥s o login, o usu√°rio poder√° iserir, excluir e alterar email/senha, buscar uma senha referente a um email e avaliar as senhas;
 
 
-//usu·rio.h
+//usu√°rio.h
 class Usuario{
 	public:
 		Usuario(string);
