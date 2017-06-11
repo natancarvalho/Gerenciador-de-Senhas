@@ -1,0 +1,14 @@
+**********************************READ-ME****************************************************
+
+	A fim de facilitar o desenvolvimento foi feita uma Classe chamada usuario que será pai das 
+classes Banco e Cadastro. A classe usuario terá atributos, nome e data de nascimento que serão
+herdados por todas as outras classes. A classe cadastro será utilizada para cadastrar um usuario
+no programa possuindo então login e sinha como atributos privados.Já a classe Banco recebeu esse 
+nome pois conterá os atrobitos, e-mail e senha. Ela preencherá um vector que será escrito no arquivo.
+Todas as classes tem construtores específicos, metodos get e metodos print.
+
+Foi feito também a classe arquivo que contem como atributos um vector de usuarios e que poderá incluir
+as classes derivadas por polimorfismo. Tem funções busca, inserção e remoção de algum item do banco.
+O primeiro item do vector será sempre um Usuario (nome e data de nascimento);
+O segundo será um Cadastro (login e senha)
+Do terceiro em diante serão alocadas os e-mails e as senhas gerenciadas.
